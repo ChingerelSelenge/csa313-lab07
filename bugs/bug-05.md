@@ -36,17 +36,23 @@ Major — Хайлтын шаардлагатай зан төлөв зөрчиг
 
 ## Нотолгоо
 
-screenshots/bug-05-184758-01.png
-screenshots/bug-05-184814-01.png
-screenshots/bug-05-184828-02.png
-screenshots/bug-05-184843-03.png
-screenshots/bug-05-184853-04.png
-screenshots/bug-05-184908-01.png
-screenshots/bug-05-184919-02.png
+![Хайлтын шалгалт 1](../screenshots/bug-05-184758-01.png)
+
+![Хайлтын шалгалт 2](../screenshots/bug-05-184814-01.png)
+
+![Хайлтын шалгалт 3](../screenshots/bug-05-184828-02.png)
+
+![Хайлтын шалгалт 4](../screenshots/bug-05-184843-03.png)
+
+![Хайлтын шалгалт 5](../screenshots/bug-05-184853-04.png)
+
+![Хайлтын шалгалт 6](../screenshots/bug-05-184908-01.png)
+
+![Хайлтын шалгалт 7](../screenshots/bug-05-184919-02.png)
 
 ## Олдсон аялал
 
-Antisocial — санал болгосон ангилал; өөрийн session-д бодитоор ашигласан аялалтай тулгаж баталгаажуулна.
+Antisocial - хайлтын оролтын том, жижиг үсгийг өөрчилж үр дүнг харьцуулсан.
 
 ## Нэмэлт тэмдэглэл
 

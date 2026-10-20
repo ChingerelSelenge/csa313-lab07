@@ -48,13 +48,13 @@ Major — Формат буруу хүсэлтийг амжилттай гэж �
 
 [Session-ийн curl гаралт](../evidence/bug-03-curl.txt)
 
-[Хүсэлтийн body](../evidence/invalid-json-body.txt)
+[Илгээсэн буруу JSON body](../evidence/invalid-json-body.txt)
 
-screenshots/bug-03-185344-01.png
+![API хүсэлтийн зураг](../screenshots/bug-03-185344-01.png)
 
 ## Олдсон аялал
 
-Saboteur — санал болгосон ангилал; өөрийн session-д бодитоор ашигласан аялалтай тулгаж баталгаажуулна.
+Saboteur - зориуд бүрэн бус JSON илгээж API-ийн алдаа боловсруулах зан төлөвийг шалгасан.
 
 ## Нэмэлт тэмдэглэл
 
