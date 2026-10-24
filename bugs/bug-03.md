@@ -1,61 +1,59 @@
-# BUG-03: Бүрэн бус JSON хүсэлтэд API HTTP 200 болон OK буцаадаг
+# BUG-03 — Буруу JSON хүсэлтэд HTTP 200 OK буцаадаг
 
-## Орчин
-
-- Апп: Уншлагын жагсаалт v2.0
-- Node.js: v20.19.2
-- Git: 2.47.3
-- curl: 8.14.1
-- browser: Mozilla Firefox 153.4.0esr
-- Үйлдлийн систем: Linux
-- Огноо: 2026-10-20
+- Тестер: С. Чингэрэл
+- Огноо: 2026-10-24
+- Ажигласан цаг: 23:26:29 (+08:00)
+- Endpoint: POST http://localhost:3000/api/books
+- Severity: Major
+- Төлөв: Илэрсэн
 
 ## Урьдчилсан нөхцөл
 
-Дахин шалгахдаа `node app.js`-ийг шинээр асааж, http://localhost:3000 хуудсыг шинэчилнэ. Анхны 3 номтой төлөвөөс эхэлнэ.
+Сервер localhost:3000 дээр ажиллаж байна.
 
-## Дахин гаргах алхам
+## Давтах алхам
 
-1. http://localhost:3000 хаягийг нээнэ.
-2. `evidence/invalid-json-body.txt` файлд `{"title":` гэсэн бүрэн бус JSON хадгална.
-3. Доорх curl командыг ажиллуулна.
-4. HTTP статус болон response body-г ажиглана.
+1. Бүрэн бус JSON агуулсан файл үүсгэнэ:
 
-```bash
-printf '%s' '{"title":' > evidence/invalid-json-body.txt
-curl -i --max-time 10 \
-  -X POST http://localhost:3000/api/books \
-  -H 'Content-Type: application/json' \
-  --data-binary @evidence/invalid-json-body.txt \
-  2>&1 | tee evidence/bug-03-recheck-curl.txt
-```
+   printf '%s' '{"title":' > evidence/invalid-json-body.txt
 
-Дахин шалгалтыг тусдаа файлд хадгалж, session-ийн эх нотолгоог дарахгүй.
+2. Хүсэлт илгээнэ:
 
-## Хүлээгдэж байсан үр дүн
+   curl -sS -i --max-time 10 \
+     -X POST http://localhost:3000/api/books \
+     -H 'Content-Type: application/json' \
+     --data-binary @evidence/invalid-json-body.txt
 
-Спецификацийн дагуу буруу JSON биетэй POST хүсэлтэд HTTP 400 буцаана.
+3. HTTP статус болон response body-г шалгана.
+
+## Хүлээгдэх үр дүн
+
+Сервер JSON синтаксийн алдааг илрүүлж,
+HTTP 400 болон алдааны хариу буцаана.
 
 ## Бодит үр дүн
 
-HTTP/1.1 200 OK болон `{"result":"OK"}` буцсан.
+HTTP статус:
 
-## Ноцтой байдал
+    HTTP/1.1 200 OK
 
-Major — Формат буруу хүсэлтийг амжилттай гэж мэдээлж байна.
+Response body:
+
+    {"result":"OK"}
+
+## Нөлөө
+
+Хүчингүй хүсэлтийг амжилттай мэт мэдээлдэг.
+API хэрэглэгч алдааг зөв таних боломжгүй болно.
 
 ## Нотолгоо
 
-[Session-ийн curl гаралт](../evidence/bug-03-curl.txt)
+- [Curl-ийн бүтэн гаралт](../evidence/api-invalid-json-curl.txt)
+- [Илгээсэн body](../evidence/invalid-json-body.txt)
+- [Терминалын зураг](../screenshots/30.png)
+- [Түүхий тэмдэглэл](../evidence/raw-notes.txt)
 
-[Илгээсэн буруу JSON body](../evidence/invalid-json-body.txt)
+## Цагийн тулгалт
 
-![API хүсэлтийн зураг](../screenshots/bug-03-185344-01.png)
-
-## Олдсон аялал
-
-Saboteur - зориуд бүрэн бус JSON илгээж API-ийн алдаа боловсруулах зан төлөвийг шалгасан.
-
-## Нэмэлт тэмдэглэл
-
-Ном үнэхээр нэмэгдсэн эсэхийг энэ HTTP гаралтаас дүгнээгүй. Session evidence-ийн Date нь 2026-10-20 10:52:04 GMT буюу +08:00 цагаар 18:52:04.
+Response-ийн Date: Sat, 24 Oct 2026 15:26:29 GMT нь
+Asia/Ulaanbaatar бүсийн 23:26:29 цагтай таарна.
