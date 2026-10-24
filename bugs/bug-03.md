@@ -13,16 +13,22 @@
 
 ## Давтах алхам
 
+Repository-ийн үндсэн хавтсаас ажиллуулна.
+
 1. Бүрэн бус JSON агуулсан файл үүсгэнэ:
 
+   ```bash
    printf '%s' '{"title":' > evidence/invalid-json-body.txt
+   ```
 
 2. Хүсэлт илгээнэ:
 
+   ```bash
    curl -sS -i --max-time 10 \
      -X POST http://localhost:3000/api/books \
      -H 'Content-Type: application/json' \
      --data-binary @evidence/invalid-json-body.txt
+   ```
 
 3. HTTP статус болон response body-г шалгана.
 
